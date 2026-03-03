@@ -1,0 +1,114 @@
+<svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+<defs>
+<style>
+  /* backgrounds only — text uses currentColor or stays explicitly themed */
+  .zone-g  { fill: #F0FDF4; stroke: #86EFAC; stroke-width: 2; }
+  .zone-b  { fill: #EFF6FF; stroke: #93C5FD; stroke-width: 2; }
+  .box-w   { fill: #FFFFFF; stroke: #86EFAC; stroke-width: 1.5; }
+  .box-wb  { fill: #FFFFFF; stroke: #93C5FD; stroke-width: 1.5; }
+  .cell-g  { fill: #DCFCE7; stroke: #86EFAC; stroke-width: 1; }
+  .cell-b  { fill: #DBEAFE; stroke: #93C5FD; stroke-width: 1; }
+  .dash-g  { fill: #F0FDF4; stroke: #86EFAC; stroke-width: 1.5; stroke-dasharray: 6,3; }
+  .bdg-box { fill: #F1F5F9; stroke: #CBD5E1; stroke-width: 1; }
+
+  @media (prefers-color-scheme: dark) {
+    .zone-g  { fill: #052e16; stroke: #166534; }
+    .zone-b  { fill: #0c1a2e; stroke: #1e3a5f; }
+    .box-w   { fill: #0a1f11; stroke: #166534; }
+    .box-wb  { fill: #0a1525; stroke: #1e3a5f; }
+    .cell-g  { fill: #14532d; stroke: #166534; }
+    .cell-b  { fill: #1e3a5f; stroke: #1e4a8a; }
+    .dash-g  { fill: #052e16; stroke: #166534; }
+    .bdg-box { fill: #1E293B; stroke: #374151; }
+  }
+</style>
+<marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+  <path d="M0,0 L9,4.5 L0,9 Z" fill="#94A3B8"/>
+</marker>
+</defs>
+
+<!-- LEFT ZONE -->
+<rect x="32" y="32" width="400" height="456" rx="10" class="zone-g"/>
+<rect x="32" y="32" width="400" height="56" rx="10" fill="#16A34A"/>
+<rect x="32" y="72" width="400" height="16" fill="#16A34A"/>
+<text x="232" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF" letter-spacing="1">no_std + alloc</text>
+<text x="232" y="78" text-anchor="middle" font-size="11" fill="#D1FAE5">compiles without OS — bare-metal safe</text>
+
+<!-- protocol/ -->
+<rect x="52" y="106" width="360" height="156" rx="8" class="box-w"/>
+<text x="72" y="130" font-size="13" font-weight="700" fill="#15803D">protocol/</text>
+<rect x="68" y="140" width="100" height="46" rx="6" class="cell-g"/>
+<text x="118" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D">packet.rs</text>
+<text x="118" y="176" text-anchor="middle" font-size="10" fill="#16A34A">encode · decode</text>
+<rect x="186" y="140" width="100" height="46" rx="6" class="cell-g"/>
+<text x="236" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D">nack.rs</text>
+<text x="236" y="176" text-anchor="middle" font-size="10" fill="#16A34A">gap tracking</text>
+<rect x="304" y="140" width="96" height="46" rx="6" class="cell-g"/>
+<text x="352" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D">fec.rs</text>
+<text x="352" y="176" text-anchor="middle" font-size="10" fill="#16A34A">XOR parity</text>
+<rect x="68" y="200" width="332" height="46" rx="6" class="cell-g"/>
+<text x="234" y="220" text-anchor="middle" font-size="12" font-weight="600" fill="#14532D">congestion/delay_based.rs</text>
+<text x="234" y="236" text-anchor="middle" font-size="10" fill="#16A34A">OWD gradient · loss-agnostic · libm · fugit</text>
+
+<!-- deps -->
+<rect x="52" y="278" width="360" height="64" rx="8" class="box-w"/>
+<text x="72" y="300" font-size="13" font-weight="700" fill="#15803D">dependencies</text>
+<text x="72" y="320" font-size="11" fill="currentColor">hashbrown · fugit · libm · bitflags · bytes</text>
+<text x="72" y="336" font-size="10" fill="currentColor" opacity="0.6">no OS · no malloc · no BSD sockets</text>
+
+<!-- embedded -->
+<rect x="52" y="358" width="360" height="116" rx="8" class="dash-g"/>
+<text x="232" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#15803D">embedded use</text>
+<text x="232" y="406" text-anchor="middle" font-size="11" fill="currentColor">Embassy · RTIC · smoltcp · bare-metal</text>
+<text x="232" y="426" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">Use the packet / fec / nack / CC primitives</text>
+<text x="232" y="444" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">directly — wire your own transfer loop</text>
+<text x="232" y="462" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">ChirpSender / ChirpReceiver require tokio</text>
+
+<!-- BOUNDARY -->
+<line x1="480" y1="32" x2="480" y2="488" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6,4"/>
+<line x1="452" y1="168" x2="506" y2="168" stroke="#94A3B8" stroke-width="2.5" marker-end="url(#arr)"/>
+<rect x="436" y="220" width="88" height="28" rx="5" class="bdg-box"/>
+<text x="480" y="238" text-anchor="middle" font-size="10" font-weight="600" fill="currentColor" opacity="0.6">std boundary</text>
+
+<!-- RIGHT ZONE -->
+<rect x="528" y="32" width="400" height="456" rx="10" class="zone-b"/>
+<rect x="528" y="32" width="400" height="56" rx="10" fill="#1D4ED8"/>
+<rect x="528" y="72" width="400" height="16" fill="#1D4ED8"/>
+<text x="728" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF" letter-spacing="1">std + tokio</text>
+<text x="728" y="78" text-anchor="middle" font-size="11" fill="#BFDBFE">default feature — Linux · macOS · Windows</text>
+
+<!-- transfer/ -->
+<rect x="548" y="106" width="360" height="156" rx="8" class="box-wb"/>
+<text x="568" y="130" font-size="13" font-weight="700" fill="#1D4ED8">transfer/</text>
+<rect x="564" y="140" width="152" height="46" rx="6" class="cell-b"/>
+<text x="640" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">sender.rs</text>
+<text x="640" y="176" text-anchor="middle" font-size="10" fill="#2563EB">ChirpSender</text>
+<rect x="736" y="140" width="160" height="46" rx="6" class="cell-b"/>
+<text x="816" y="160" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">receiver.rs</text>
+<text x="816" y="176" text-anchor="middle" font-size="10" fill="#2563EB">ChirpReceiver</text>
+<rect x="564" y="200" width="332" height="46" rx="6" class="cell-b"/>
+<text x="730" y="220" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">tokio runtime</text>
+<text x="730" y="236" text-anchor="middle" font-size="10" fill="#2563EB">UdpSocket · file I/O · async tasks</text>
+
+<!-- deps -->
+<rect x="548" y="278" width="360" height="64" rx="8" class="box-wb"/>
+<text x="568" y="300" font-size="13" font-weight="700" fill="#1D4ED8">dependencies</text>
+<text x="568" y="320" font-size="11" fill="currentColor">tokio · aes-gcm · anyhow · tracing · clap</text>
+<text x="568" y="336" font-size="10" fill="currentColor" opacity="0.6">full OS required</text>
+
+<!-- CLI -->
+<rect x="548" y="358" width="360" height="116" rx="8" class="box-wb"/>
+<text x="728" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#1D4ED8">CLI binaries</text>
+<rect x="564" y="396" width="152" height="44" rx="6" class="cell-b"/>
+<text x="640" y="415" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">chirp-send</text>
+<text x="640" y="431" text-anchor="middle" font-size="10" fill="#2563EB">clap · tokio</text>
+<rect x="736" y="396" width="160" height="44" rx="6" class="cell-b"/>
+<text x="816" y="415" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">chirp-recv</text>
+<text x="816" y="431" text-anchor="middle" font-size="10" fill="#2563EB">clap · tokio</text>
+
+<!-- footer -->
+<text x="480" y="508" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">
+  protocol/ compiles to no_std · transfer/ and CLI require tokio — feature = &quot;std&quot; (default on)
+</text>
+
+</svg>

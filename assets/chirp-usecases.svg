@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg    { fill: #0f172a; }
+      .box   { fill: #1e293b; stroke: #334155; stroke-width: 1; }
+      .boxc  { fill: #1c0d00; stroke: #f97316; stroke-width: 1.5; }
+      .lbl   { fill: #f1f5f9; font-family: ui-sans-serif,system-ui,sans-serif; font-size: 12px; font-weight: 600; }
+      .sub   { fill: #cbd5e1; font-family: ui-sans-serif,system-ui,sans-serif; font-size: 10px; }
+      .clbl  { fill: #f97316; font-family: ui-sans-serif,system-ui,sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; }
+      .csub  { fill: #fed7aa; font-family: ui-sans-serif,system-ui,sans-serif; font-size: 10px; }
+      .sl    { stroke: #475569; stroke-width: 1; fill: none; }
+      .sr    { stroke: #f97316; stroke-width: 1; fill: none; opacity: 0.55; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="900" height="320"/>
+
+  <!-- CENTER node (x=360..540, y=120..200, center=450,160) -->
+  <rect class="boxc" x="360" y="120" width="180" height="80" rx="6"/>
+  <text class="clbl" x="450" y="150" text-anchor="middle">chirp</text>
+  <text class="csub" x="450" y="166" text-anchor="middle">UDP · FEC · NACK · OWD CC</text>
+  <text class="csub" x="450" y="181" text-anchor="middle">Apache 2.0 · Rust</text>
+
+  <!-- LEFT column (x=30..210), boxes centered at y=64, 160, 256 -->
+  <rect class="box" x="30" y="32"  width="180" height="64" rx="5"/>
+  <text class="lbl" x="120" y="56"  text-anchor="middle">Cloud / AI</text>
+  <text class="sub" x="120" y="71"  text-anchor="middle">model weights · datasets</text>
+  <text class="sub" x="120" y="84"  text-anchor="middle">cross-region pipelines</text>
+
+  <rect class="box" x="30" y="128" width="180" height="64" rx="5"/>
+  <text class="lbl" x="120" y="152" text-anchor="middle">Enterprise WAN</text>
+  <text class="sub" x="120" y="167" text-anchor="middle">high-latency links</text>
+  <text class="sub" x="120" y="180" text-anchor="middle">upload / download acceleration</text>
+
+  <rect class="box" x="30" y="224" width="180" height="64" rx="5"/>
+  <text class="lbl" x="120" y="248" text-anchor="middle">Embedded</text>
+  <text class="sub" x="120" y="263" text-anchor="middle">no_std · Cortex-M · RISC-V</text>
+  <text class="sub" x="120" y="276" text-anchor="middle">Embassy · RTIC · smoltcp</text>
+
+  <!-- RIGHT column (x=690..870), same vertical centers -->
+  <rect class="box" x="690" y="32"  width="180" height="64" rx="5"/>
+  <text class="lbl" x="780" y="56"  text-anchor="middle">Media</text>
+  <text class="sub" x="780" y="71"  text-anchor="middle">remote ingest · live edit</text>
+  <text class="sub" x="780" y="84"  text-anchor="middle">high-bitrate file delivery</text>
+
+  <rect class="box" x="690" y="128" width="180" height="64" rx="5"/>
+  <text class="lbl" x="780" y="152" text-anchor="middle">Satellite</text>
+  <text class="sub" x="780" y="167" text-anchor="middle">600 ms RTT · 2% loss</text>
+  <text class="sub" x="780" y="180" text-anchor="middle">telemetry · backhaul</text>
+
+  <rect class="box" x="690" y="224" width="180" height="64" rx="5"/>
+  <text class="lbl" x="780" y="248" text-anchor="middle">Drone / RF</text>
+  <text class="sub" x="780" y="263" text-anchor="middle">8% loss · contested spectrum</text>
+  <text class="sub" x="780" y="276" text-anchor="middle">field data · telemetry</text>
+
+  <!-- Left spokes → center (210,centerY → 360,160) -->
+  <path class="sl" d="M210,64  C285,64  285,160 360,160"/>
+  <path class="sl" d="M210,160 L360,160"/>
+  <path class="sl" d="M210,256 C285,256 285,160 360,160"/>
+
+  <!-- Right spokes center → right (540,160 → 690,centerY) -->
+  <path class="sr" d="M540,160 C615,160 615,64  690,64"/>
+  <path class="sr" d="M540,160 L690,160"/>
+  <path class="sr" d="M540,160 C615,160 615,256 690,256"/>
+</svg>

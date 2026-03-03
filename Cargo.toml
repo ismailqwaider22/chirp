@@ -1,0 +1,91 @@
+[package]
+name = "chirp"
+version = "0.1.0"
+edition = "2021"
+description = "UDP bulk file transfer for lossy RF links — no_std, FEC, delay-based CC. Runs on drones, satellites, and embedded targets."
+license = "Apache-2.0"
+
+[lib]
+name = "chirp"
+path = "src/lib.rs"
+
+[[bin]]
+name = "chirp-send"
+path = "bin/send.rs"
+required-features = ["std"]
+
+[[bin]]
+name = "chirp-recv"
+path = "bin/recv.rs"
+required-features = ["std"]
+
+[features]
+default = ["std"]
+# Full async runtime: tokio, file I/O, AES-256-GCM encryption, CLI
+std = [
+    "alloc",
+    "tokio",
+    "aes-gcm",
+    "rand",
+    "anyhow",
+    "clap",
+    "tracing/std",
+    "tracing-subscriber",
+    "thiserror/std",
+    "hex",
+    "indicatif",
+    "serde",
+    "serde_json",
+]
+# Heap allocation without full std — for embedded targets with a global allocator
+alloc = []
+
+[dependencies]
+# ── no_std-compatible core deps (always present) ────────────────────────────
+bytes      = { version = "1.11.1",    default-features = false }
+bitflags   = { version = "2.11.0",    default-features = false }
+libm       = { version = "0.2.16",  default-features = false }
+thiserror  = { version = "2.0.18",    default-features = false }
+tracing    = { version = "0.1.44",  default-features = false }
+
+# hashbrown: Google's SwissTable — the stdlib HashMap since Rust 1.36, no_std + alloc
+# foldhash default hasher: fastest non-crypto hasher, no_std native, perfect for integer seq nums
+hashbrown  = { version = "0.16.1", default-features = false, features = ["default-hasher"] }
+
+# fugit: type-safe embedded time — Instant<u64, NOM, DENOM>, no std::time::Instant
+fugit      = { version = "0.3.9",  default-features = false }
+
+# ── std-only deps ────────────────────────────────────────────────────────────
+tokio              = { version = "1.50.0",   features = ["full"],       optional = true }
+aes-gcm            = { version = "0.10.3",                           optional = true }
+rand               = { version = "0.8",                            optional = true }
+anyhow             = { version = "1.0.102",                              optional = true }
+clap               = { version = "4.5.60",   features = ["derive"],     optional = true }
+tracing-subscriber = { version = "0.3.22", features = ["env-filter"], optional = true }
+hex                = { version = "0.4.3",                            optional = true }
+indicatif          = { version = "0.18.4",                           optional = true }
+serde              = { version = "1.0.228", features = ["derive"],   optional = true }
+serde_json         = { version = "1.0.149",                           optional = true }
+
+[[bench]]
+name = "protocol"
+harness = false
+
+[dev-dependencies]
+criterion = { version = "0.8.2", features = ["html_reports"] }
+tokio     = { version = "1.50.0",   features = ["full"] }
+
+[[bin]]
+name = "simulate"
+path = "bin/simulate.rs"
+required-features = ["std"]
+
+[[bin]]
+name = "netem_bench"
+path = "bin/netem_bench.rs"
+required-features = ["std"]
+
+[[bin]]
+name = "chirp-bench"
+path = "bin/bench.rs"
+required-features = ["std"]
